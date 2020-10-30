@@ -1,5 +1,5 @@
 # cakephp3-BJUI-bake
-基于CakePHP3的BJUI Bake 生成代码
+基于CakePHP3的BJUI Bake 代码生成
 
 
 #### 使用
