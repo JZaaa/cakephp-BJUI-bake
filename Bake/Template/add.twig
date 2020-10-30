@@ -1,0 +1,25 @@
+{% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
+<div class="bjui-pageContent">
+    <form action="<?php echo $this->Url->build(['plugin' => {% if plugin %}'{{ plugin }}'{% else %}null{% endif %}, 'controller' => '{{ modelObject.getAlias() }}', 'action' => 'add'])?>" class="pageForm" data-toggle="validate" data-reloadNavtab="true" >
+        <table class="table table-condensed table-hover">
+            <tbody>
+{% for field in fields if field not in primaryKey %}
+    {%- if field not in ['created', 'modified', 'updated'] %}
+            <tr>
+                <td>
+                    <label class="control-label x85">{{ field }}：</label>
+                    <input type="text" name="{{ field }}" value="" size="35" class="form-control input-nm">
+                </td>
+            </tr>
+    {% endif %}
+{% endfor %}
+        </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close btn-no">关闭</button></li>
+        <li><button type="submit" class="btn-blue">保存</button></li>
+    </ul>
+</div>
