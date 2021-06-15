@@ -5,12 +5,22 @@
             <tbody>
 {% for field in fields if field not in primaryKey %}
     {%- if field not in ['created', 'modified', 'updated'] %}
+        {%- set fieldData = Bake.columnData(field, schema) %}
+        {%- if fieldData.null %}
             <tr>
                 <td>
                     <label class="control-label x85">{{ field }}：</label>
                     <input type="text" name="{{ field }}" value="" size="35" class="form-control input-nm">
                 </td>
             </tr>
+        {% else %}
+            <tr>
+                <td>
+                    <label class="control-label x85 required">{{ field }}：</label>
+                    <input type="text" name="{{ field }}" value="" size="35" class="form-control input-nm" data-rule="required">
+                </td>
+            </tr>
+        {% endif %}
     {% endif %}
 {% endfor %}
         </tbody>
