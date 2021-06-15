@@ -10,7 +10,7 @@
             <tr>
                 <td>
                     <label class="control-label x85">{{ field }}：</label>
-                    <input type="text" name="{{ field }}" value="" size="35" class="form-control input-nm">
+                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" size="35" class="form-control input-nm">
                 </td>
             </tr>
             {{- "\n" }}
@@ -18,26 +18,26 @@
             <tr>
                 <td>
                     <label class="control-label x85">{{ field }}：</label>
-                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" size="35" class="form-control input-nm">
+                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" data-rule="required" size="35" class="form-control input-nm">
                 </td>
             </tr>
             {{- "\n" }}
         {%- endif %}
     {%- elseif field not in ['created', 'modified', 'updated'] %}
         {%- set fieldData = Bake.columnData(field, schema) %}
-        {%- if fieldData.type in ['date', 'datetime', 'time'] and fieldData.null %}
+        {%- if fieldData.null %}
             <tr>
                 <td>
                     <label class="control-label x85">{{ field }}：</label>
-                    <input type="text" name="{{ field }}" value="" size="35" class="form-control input-nm">
+                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" size="35" class="form-control input-nm">
                 </td>
             </tr>
             {{- "\n" }}
         {%- else %}
             <tr>
                 <td>
-                    <label class="control-label x85">{{ field }}：</label>
-                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" size="35" class="form-control input-nm">
+                    <label class="control-label x85 required">{{ field }}：</label>
+                    <input type="text" name="{{ field }}" value="<?php echo $data['{{ field }}']?>" size="35" class="form-control input-nm" data-rule="required">
                 </td>
             </tr>
             {{- "\n" }}
