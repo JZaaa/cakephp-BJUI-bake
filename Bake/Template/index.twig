@@ -16,7 +16,7 @@
         <thead>
             <tr>
             <th>序号</th>
-        {% for field in fields %}
+        {% for field in fields if field not in primaryKey %}
         <th>{{ field }}</th>
         {% endfor %}
         <th>操作</th>
@@ -26,7 +26,7 @@
         <?php foreach($data as $key => $item): ?>
             <tr>
                 <td><?php echo $key + 1?></td>
-        {% for field in fields %}
+        {% for field in fields if field not in primaryKey %}
         <td><?php echo $item['{{ field }}']?></td>
         {% endfor %}
         <td>
