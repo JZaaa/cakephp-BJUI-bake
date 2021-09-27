@@ -18,6 +18,8 @@
  */
 #}
 <?php
+declare(strict_types=1);
+
 namespace {{ namespace }}\Controller{{ prefix }};
 
 use {{ namespace }}\Controller\AppController;
@@ -36,8 +38,9 @@ use App\Model\Table\{{ name }}Table;
 class {{ name }}Controller extends AppController
 {
 
-    public ${{ name }};
-    public function initialize()
+    protected ${{ name }};
+
+    public function initialize(): void
     {
         parent::initialize();
         $this->{{ name }} = TableRegistry::getTableLocator()->get('{{ name }}');
@@ -63,7 +66,7 @@ class {{ name }}Controller extends AppController
 
             $newData = $this->request->getData();
 
-            $data = $this->{{ name }}->newEntity();
+            $data = $this->{{ name }}->newEmptyEntity();
 
             $data = $this->{{ name }}->patchEntity($data, $newData);
 

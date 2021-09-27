@@ -16,8 +16,10 @@
         <thead>
             <tr>
             <th style="width: 80px">序号</th>
-        {% for field in fields if field not in primaryKey %}
-        <th>{{ field }}</th>
+        {% for field in fields %}
+            {% if field not in primaryKey %}
+            <th>{{ field }}</th>
+            {% endif %}
         {% endfor %}
         <th>操作</th>
             </tr>
@@ -26,8 +28,10 @@
         <?php foreach($data as $key => $item): ?>
             <tr>
                 <td><?php echo $key + 1?></td>
-        {% for field in fields if field not in primaryKey %}
+        {% for field in fields %}
+            {% if field not in primaryKey %}
         <td><?php echo $item['{{ field }}']?></td>
+            {% endif %}
         {% endfor %}
         <td style="width: 250px">
                     <a href="<?php echo $this->Url->build(['plugin' => {% if plugin %}'{{ plugin }}'{% else %}null{% endif %}, 'controller' => '{{ modelObject.getAlias() }}', 'action' => 'edit', $item['id']])?>" class="btn btn-blue" data-toggle="dialog" data-width="600" data-height="350" data-mask="true">编辑</a>&nbsp;
